@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_koko_mrp_products,koko.mrp.products user,model_koko_mrp_products,mrp.group_mrp_user,1,1,1,1
+access_koko_mrp_products_used,koko.mrp.products.used user,model_koko_mrp_products_used,mrp.group_mrp_user,1,1,1,1

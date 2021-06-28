@@ -1,0 +1,45 @@
+version: '2'
+services:
+  db:
+    image: postgres:12.0
+    environment:
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+      - POSTGRES_DB=postgres
+    restart: always             
+    volumes:
+      - ./postgresql:/var/lib/postgresql/data
+
+
+  odoo12:
+    image: odoo:12.0
+    depends_on:
+      - db
+    ports:
+      - "10012:8069"
+    tty: true
+    command: -- --dev=reload
+    environment:
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoo
+    volumes:
+      - ./odoo12/custom_addons:/mnt/extra-addons
+      - ./odoo12/enterprise_addons:/mnt/enterprise-addons
+      - ./odoo12/etc:/etc/odoo
+    restart: always
+  
+#  api:
+#    image: odoo_api
+#    depends_on:
+#      - odoo12
+#    build:
+#        context: odoo_api
+#    ports:
+#        - "15050:5000"
+#    environment:
+#        - HOST=odoo12
+#        - USER=odoo
+#        - PASSWORD=odoo
+#    restart: always
+#    network_mode: host
