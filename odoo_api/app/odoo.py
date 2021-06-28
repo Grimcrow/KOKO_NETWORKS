@@ -70,27 +70,10 @@ class JsonApi(object):
         _logger.debug('Authentication successful')
         self.__uid = result
 
-    def _make_request(self, url, model, method, *args):
-        _logger.debug('Making POST request to url {}'.format(url))
-
-        response = requests.post(
-            url,
-            json={
-                'jsonrpc': '2.0',
-                'method': 'call',
-                'params': {
-                    'service': 'object',
-                    'method': 'execute',
-                    'args': [self.db, self.uid, self.passwd, model, method, *args]
-                }
-            },
-        )
-        return response.json()
-
     def _get_jsonrpc_url(self):
         return "http://{}:{}/jsonrpc".format(self.host, self.port)
 
-    def process(self, model, method, *args):
+    def process(self, model, method, args):
         """Process an Odoo JSONRPC API action
 
         `context` is omitted when action is create
@@ -105,13 +88,18 @@ class JsonApi(object):
             self._authenticate()
 
         url = self._get_jsonrpc_url()
-        response = self._make_request(url, model, method, *args)
 
-        # Validate session
-        error = response.get('error', '')
-        if error and error.get('code', 0) in (100, 200):
-            _logger.debug('Session error encountered. Retrying.')
-            self._authenticate()
-            response = self._make_request(url, model, method, *args)
-
-        return response
+        _logger.debug('Making POST request to url {}'.format(url))
+        response = requests.post(
+            url,
+            json={
+                'jsonrpc': '2.0',
+                'method': 'call',
+                'params': {
+                    'service': 'object',
+                    'method': 'execute',
+                    'args': [self.db, self.uid, self.passwd, model, method, *args]
+                }
+            },
+        )
+        return response.json()
