@@ -28,18 +28,4 @@ services:
       - ./odoo12/enterprise_addons:/mnt/enterprise-addons
       - ./odoo12/etc:/etc/odoo
     restart: always
-  
-#  api:
-#    image: odoo_api
-#    depends_on:
-#      - odoo12
-#    build:
-#        context: odoo_api
-#    ports:
-#        - "15050:5000"
-#    environment:
-#        - HOST=odoo12
-#        - USER=odoo
-#        - PASSWORD=odoo
-#    restart: always
-#    network_mode: host
+
