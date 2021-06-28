@@ -10,7 +10,6 @@ services:
     volumes:
       - ./postgresql:/var/lib/postgresql/data
 
-
   odoo12:
     image: odoo:12.0
     depends_on:
@@ -28,4 +27,12 @@ services:
       - ./odoo12/enterprise_addons:/mnt/enterprise-addons
       - ./odoo12/etc:/etc/odoo
     restart: always
-
+  
+  api:
+    image: odoo_api
+    depends_on:
+      - odoo12
+    build:
+        context: odoo_api
+    restart: always
+    network_mode: host
