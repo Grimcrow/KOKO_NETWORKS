@@ -18,5 +18,8 @@ $ mkdir -p postgresql
 $ sudo chmod -R 777 postgresql
 ````
 4. Run `docker-compose up -d`
+5. Create Odoo Database and User
+6. Install the Manufacturing Module and Sales Module
+7. Install KOKO MRP module 
 
 
