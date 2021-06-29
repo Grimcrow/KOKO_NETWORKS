@@ -22,4 +22,8 @@ $ sudo chmod -R 777 postgresql
 6. Install the Manufacturing Module and Sales Module
 7. Install KOKO MRP module 
 
+## Testing
+Find the postman collection here to interact with the api: `https://www.getpostman.com/collections/e9c9cc7b718bbb6de016`
+
+
 
