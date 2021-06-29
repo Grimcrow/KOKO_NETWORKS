@@ -7,7 +7,7 @@
             <field name="name">Internal</field>
         </record>
 
-        <record id="final_product_1" model="product.product">
+        <!-- <record id="final_product_1" model="product.product">
             <field name="name">Final Product 1</field>
             <field name="categ_id" ref="product_category_koko_product"/>
             <field name="standard_price">1150.0</field>
@@ -17,7 +17,7 @@
             <field name="uom_po_id" ref="product.product_uom_unit"/>
             <field name="description">On demand hard-disk having capacity based on requirement.</field>
             <field name="default_code">PROD1</field>
-        </record>
+        </record> -->
 
 <!--        <record id="raw_item_1" model="product.product">-->
 <!--            <field name="name">Raw Item 1</field>-->
